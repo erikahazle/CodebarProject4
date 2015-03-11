@@ -1,1 +1,1 @@
-/* Exercise 1: Wish list */
+// github user finder example
