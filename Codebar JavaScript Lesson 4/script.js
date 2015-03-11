@@ -8,6 +8,12 @@ function getGithubInfo(name) {
 	return xhr;
 }
 
+function showUser(user) {
+	// render user information
+
+	$('#profile h2').val(user + " is GitHub user #" + user.id);
+}
+
 
 $(document).ready(function () {
 	$(document).on('keypress', '#username', function(e) {
@@ -15,9 +21,13 @@ $(document).ready(function () {
 			// get val() from input field
 			var name = $('#username').val();
 
-			var response = getGithubInfo(name);
+			response = getGithubInfo(name);
 
-			console.log(response.responseText);
+			if (response.status == 200) {
+				showUser(JSON.parse(response.responseText));
+			} else {
+				noSuchUser(username);
+			}
 		}
 	})
 });
