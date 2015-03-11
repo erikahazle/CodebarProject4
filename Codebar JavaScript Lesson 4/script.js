@@ -10,10 +10,19 @@ function getGithubInfo(name) {
 
 function showUser(user) {
 	// render user information
-
-	$('#profile h2').val(user + " is GitHub user #" + user.id);
+	$('#profile .information').show();
+	$('#profile .avatar').show();
+	$('#profile h2').html(user.login + " is Github user #" +user.id);
+	$('#profile .information').html("<a class='profile' href='"+user.html_url+"'> Go to "+ user.name+"'s profile</a>");
+	$('#profile .avatar').html("<img src=https://gravatar.com/avatar/"+ user.gravatar_id+"?s=220/>");
 }
 
+
+function noSuchUser(username) {
+  $('#profile h2').html("No user " + username);
+  $('#profile .information').hide();
+  $('#profile .avatar').hide();
+}
 
 $(document).ready(function () {
 	$(document).on('keypress', '#username', function(e) {
